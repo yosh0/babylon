@@ -45,12 +45,10 @@ func handshake1(rw *bufio.ReadWriter) bool {
 	b := ReadBuf(rw, HANDSHAKE_SIZE+1)
 	if b[0] != 0x3 {
 		log.Warn("C0 error ", b[0])
-		os.Exit(0)
 		return false
 	}
 	if len(b[1:]) != HANDSHAKE_SIZE {
 		log.Warn("C1 error ", len(b[1:]))
-		os.Exit(0)
 		return false
 	}
 	input := make([]byte, HANDSHAKE_SIZE)
