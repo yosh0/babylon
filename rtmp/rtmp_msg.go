@@ -1,7 +1,7 @@
 package rtmp
 
 import (
-	"babylon/util"
+	"github.com/yosh0/babylon/util"
 	"bytes"
 	"encoding/json"
 	"errors"
