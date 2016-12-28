@@ -82,7 +82,7 @@ func (p *StreamPacket) Clone() *StreamPacket {
 	return packet
 }
 
-func (p *StreamPacket) String() string {
+func (p *StreamPacket) String() {
 /*
 	if p.Type == RTMP_MSG_AUDIO {
 		return fmt.Sprintf("Audio StreamPacket Timestamp/%v Type/%v AudioFromat/%v SampleRate/%v SampleLength/%v AudioType/%v Payload/%v", p.Timestamp, p.Type, audioformat[p.AudioFormat], samplerate[p.SamplingRate], samplelength[p.SampleLength], audiotype[p.AudioType], len(p.Payload))
@@ -91,7 +91,7 @@ func (p *StreamPacket) String() string {
 	}
 	return fmt.Sprintf("StreamPacket Timestamp/%v Type/%v Payload/%v", p.Timestamp, p.Type, len(p.Payload))
 */
-	return ""
+	return
 }
 
 func (p *StreamPacket) isKeyFrame() bool {
