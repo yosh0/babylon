@@ -9,7 +9,6 @@ import (
 	log "github.com/cihub/seelog"
 	"io"
 	"math/rand"
-	"os"
 )
 
 const (
