@@ -52,7 +52,7 @@ func writeMessage(p *RtmpNetConnection, msg RtmpMessage) (err error) {
 		sendAck(p, p.totalwritebytes)
 		sendPing(p)
 	}
-	log.Debug(p.remoteAddr, " >>>>> ", msg)
+	//log.Debug(p.remoteAddr, " >>>>> ", msg)
 	chunk, reset, err := encodeChunk12(msg.Header(), msg.Body(), p.writeChunkSize)
 	if err != nil {
 		return
@@ -98,37 +98,37 @@ func readMessage(conn *RtmpNetConnection) (msg RtmpMessage, err error) {
 	}
 	switch msg.Header().MessageType {
 	case RTMP_MSG_CHUNK_SIZE:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		m := msg.(*ChunkSizeMessage)
 		conn.readChunkSize = int(m.ChunkSize)
 		return readMessage(conn)
 	case RTMP_MSG_ABORT:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		m := msg.(*AbortMessage)
 		delete(conn.incompletePackets, m.ChunkId)
 		return readMessage(conn)
 	case RTMP_MSG_ACK:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		return readMessage(conn)
 	case RTMP_MSG_USER:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		if _, ok := msg.(*PingMessage); ok {
 			sendPong(conn)
 		}
 		return readMessage(conn)
 	case RTMP_MSG_ACK_SIZE:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		m := msg.(*AckWinSizeMessage)
 		conn.bandwidth = m.AckWinsize
 		return readMessage(conn)
 	case RTMP_MSG_BANDWIDTH:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		m := msg.(*SetPeerBandwidthMessage)
 		conn.bandwidth = m.AckWinsize
 		//sendAckWinsize(conn, m.AckWinsize)
 		return readMessage(conn)
 	case RTMP_MSG_EDGE:
-		log.Info(conn.remoteAddr, " <<<<< ", msg)
+		//log.Info(conn.remoteAddr, " <<<<< ", msg)
 		return readMessage(conn)
 	}
 	return
@@ -578,7 +578,7 @@ func sendMetaData(conn *RtmpNetConnection, data *StreamPacket) error {
 }
 
 func sendFullVideo(conn *RtmpNetConnection, video *StreamPacket) (err error) {
-	log.Debug(">>>>> ", video)
+	//log.Debug(">>>>> ", video)
 	if conn.wirtesequencenum > conn.bandwidth {
 		conn.totalwritebytes += conn.wirtesequencenum
 		conn.wirtesequencenum = 0
@@ -619,7 +619,7 @@ func sendFullVideo(conn *RtmpNetConnection, video *StreamPacket) (err error) {
 }
 
 func sendFullAudio(conn *RtmpNetConnection, audio *StreamPacket) (err error) {
-	log.Debug(">>>>> ", audio)
+	//log.Debug(">>>>> ", audio)
 	if conn.wirtesequencenum > conn.bandwidth {
 		conn.totalwritebytes += conn.wirtesequencenum
 		conn.wirtesequencenum = 0
@@ -659,7 +659,7 @@ func sendFullAudio(conn *RtmpNetConnection, audio *StreamPacket) (err error) {
 }
 
 func sendVideo(conn *RtmpNetConnection, video *StreamPacket) (err error) {
-	log.Debug(">>>>> ", video)
+	//log.Debug(">>>>> ", video)
 	if conn.wirtesequencenum > conn.bandwidth {
 		conn.totalwritebytes += conn.wirtesequencenum
 		conn.wirtesequencenum = 0
