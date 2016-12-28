@@ -83,12 +83,15 @@ func (p *StreamPacket) Clone() *StreamPacket {
 }
 
 func (p *StreamPacket) String() string {
+/*
 	if p.Type == RTMP_MSG_AUDIO {
 		return fmt.Sprintf("Audio StreamPacket Timestamp/%v Type/%v AudioFromat/%v SampleRate/%v SampleLength/%v AudioType/%v Payload/%v", p.Timestamp, p.Type, audioformat[p.AudioFormat], samplerate[p.SamplingRate], samplelength[p.SampleLength], audiotype[p.AudioType], len(p.Payload))
 	} else if p.Type == RTMP_MSG_VIDEO {
 		return fmt.Sprintf("Video StreamPacket Timestamp/%v Type/%v VideoFrameType/%v VideoCodecID/%v Payload/%v", p.Timestamp, p.Type, videoframetype[p.VideoFrameType], videocodec[p.VideoCodecID], len(p.Payload))
 	}
 	return fmt.Sprintf("StreamPacket Timestamp/%v Type/%v Payload/%v", p.Timestamp, p.Type, len(p.Payload))
+*/
+	return
 }
 
 func (p *StreamPacket) isKeyFrame() bool {
