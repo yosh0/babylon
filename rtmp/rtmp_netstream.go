@@ -253,7 +253,7 @@ func (c *RtmpNetConnection) Connect(command string, args ...Args) error {
 			//dec.readNull()
 			reply.Properties = readObject(dec)
 			reply.Infomation = readObject(dec)
-			log.Debug(reply)
+//			log.Debug(reply)
 			if NetConnection_Connect_Success == getString(reply.Infomation, "code") {
 				c.connected = true
 				return nil
@@ -307,13 +307,13 @@ func (s *RtmpNetStream) Play(streamName string, args ...Args) error {
 			return err
 		}
 
-		if m, ok := msg.(*UnknowCommandMessage); ok {
-			log.Debug(m)
+		if _, ok := msg.(*UnknowCommandMessage); ok {
+//			log.Debug(m)
 			continue
 		}
 		reply := new(ReplyCreateStreamMessage)
 		reply.Decode0(msg.Header(), msg.Body())
-		log.Debug(reply)
+//		log.Debug(reply)
 		conn.streamid = reply.StreamId
 		break
 	}
@@ -323,13 +323,13 @@ func (s *RtmpNetStream) Play(streamName string, args ...Args) error {
 		if err != nil {
 			return err
 		}
-		if m, ok := msg.(*UnknowCommandMessage); ok {
-			log.Debug(m)
+		if _, ok := msg.(*UnknowCommandMessage); ok {
+//			log.Debug(m)
 			continue
 		}
 		result := new(ReplyPlayMessage)
 		result.Decode0(msg.Header(), msg.Body())
-		log.Debug(result)
+//		log.Debug(result)
 		code := getString(result.Object, "code")
 		if code == NetStream_Play_Reset {
 			continue
