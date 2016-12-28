@@ -243,7 +243,7 @@ func (c *RtmpNetConnection) Connect(command string, args ...Args) error {
 			c.Close()
 			return err
 		}
-		log.Debug(msg)
+//		log.Debug(msg)
 		if _, ok := msg.(*ReplyMessage); ok {
 			dec := newDecoder(msg.Body())
 			reply := new(ReplyConnectMessage)
