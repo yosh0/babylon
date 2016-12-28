@@ -399,7 +399,7 @@ func (s *RtmpNetStream) BufferLength() uint64 {
 }
 
 func (s *RtmpNetStream) SendVideo(video *StreamPacket) error {
-	log.Debug(video)
+//	log.Debug(video)
 	if s.vkfsended {
 		video.Timestamp -= s.vsend_time - uint32(s.bufferTime)
 		s.vsend_time += video.Timestamp
