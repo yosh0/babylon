@@ -99,8 +99,8 @@ func (p *StreamPacket) isKeyFrame() bool {
 }
 
 type RtmpMessage interface {
-//	Header() *RtmpHeader
-//	Body() Payload
+	Header() *RtmpHeader
+	Body() Payload
 //	String() string
 }
 
