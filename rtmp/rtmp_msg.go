@@ -91,7 +91,7 @@ func (p *StreamPacket) String() string {
 	}
 	return fmt.Sprintf("StreamPacket Timestamp/%v Type/%v Payload/%v", p.Timestamp, p.Type, len(p.Payload))
 */
-	return
+	return ""
 }
 
 func (p *StreamPacket) isKeyFrame() bool {
